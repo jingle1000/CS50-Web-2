@@ -1,4 +1,4 @@
-{% load static %}
+
 <!doctype html>
 <html lang="en">
 
@@ -6,8 +6,9 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="stylesheet" href='{% static "bootstrap.min.css" %}'>
-  <link rel="stylesheet" href='{% static " home/layout.css" %}'>
+  {% load static %}
+  <link rel="stylesheet" href='{% static "home/layout.css" %}'>
+  <link rel="stylesheet" href="{% static 'home/bootstrap.css' %}">
   <title>Hello, world!</title>
 </head>
 
@@ -41,7 +42,7 @@
 
   <!-- Begin page content -->
   <main role="main" class="flex-shrink-0">
-    <div class="container">
+    <div class="container-fluid">
       <section class="jumbotron text-center ">
         <h1 class="jumbotron-heading mt-3">Book Reviews</h1>
         <p class="lead text-muted">Search for information on all your favorite titles!</p>
@@ -51,8 +52,7 @@
         </p>
       </section>
       {% for book in books %}
-      <div class="row text-center">
-        <div class="card">
+      <div class="row text-center book-list mt-3 mb-3 pt-3">
           <div class="col-md-3">
             <p>{{ book.isbn }}</p>
           </div>
@@ -65,7 +65,6 @@
           <div class="col-md-3">
             <p>{{ book.year_published }}</p>
           </div>
-        </div>
       </div>
       {% endfor %}
     </div>
