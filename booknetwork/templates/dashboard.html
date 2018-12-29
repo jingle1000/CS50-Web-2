@@ -1,0 +1,35 @@
+{% import "bootstrap/wtf.html" as wtf %}
+{% extends 'base.html'%}
+{% block content %}
+<main role="main">
+  <section class="jumbotron text-center">
+    <div class="container">
+      <h1 class="jumbotron-heading mt-5">Welcome {{ name }}</h1>
+      <p class="lead text-muted">Search for information on all your favorite titles!</p>
+    </div>
+  </section>
+</main>
+<form method="POST">
+  <div class="col-md-12 text-center" style='padding-left:25%; padding-right:25%;'>
+    <h3 class="mb-5">Search for a book</h3>
+    <div class="row mt-5">
+      <div class="col-md-5">
+        <p>Enter book title, author, isbn or year</p>
+      </div>
+      <div class="col-md-4 form-inline">
+        {{ wtf.form_field(form.search) }}
+      </div>
+      <div class="col-md-3 form-inline">
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Search</button>
+      </div>
+    </div>
+    {% if search %}
+    <div class="row">
+      <div class="result card-style">
+        <p>{{ search }}</p>
+      </div>
+    </div>
+    {% endif %}
+  </div>
+</form>
+{% endblock %}
