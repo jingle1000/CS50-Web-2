@@ -1,0 +1,8 @@
+main {
+  margin-top: 60px;
+}
+
+.book-list {
+  border-radius: 2%;
+  box-shadow: 0px 0px 15px rgb(199, 199, 199);
+}
