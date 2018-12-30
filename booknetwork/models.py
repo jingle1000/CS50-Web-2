@@ -1,6 +1,7 @@
 from datetime import datetime
 from booknetwork import Base, db
 from sqlalchemy import Column, String, Integer, ForeignKey
+from sqlalchemy.orm import relationship
 
 class User(Base):
     __tablename__ = 'user'
@@ -15,10 +16,10 @@ class User(Base):
         self.email = email
         self.password = password
 
-class Review(base):
+class Review(Base):
     __tablename__ = 'reviews'
     
-    id = Column(Integer primary_key=True)
+    id = Column(Integer, primary_key=True)
     content = Column(String)
     date_posted = Column(String)
     rating = Column(Integer)

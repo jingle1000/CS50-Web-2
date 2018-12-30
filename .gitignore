@@ -6,3 +6,5 @@ flask_session/
 \.ipynb_checkpoints/
 
 *.ipynb
+
+\.vscode/
