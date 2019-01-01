@@ -33,6 +33,7 @@
       {{ wtf.form_field(form.username) }}
       {{ wtf.form_field(form.email) }}
       {{ wtf.form_field(form.password) }}
+      {{ wtf.form_field(form.confirm_password) }}
 
       <button class="btn btn-lg btn-primary btn-block" type="submit">Sign Up</button>
       <p class="mt-5 mb-3 text-muted text-center"><a href="{{ url_for('home') }}">Back to home</a></p>

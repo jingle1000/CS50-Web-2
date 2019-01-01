@@ -17,11 +17,7 @@ app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 bootstrap = Bootstrap(app)
 
-engine = create_engine(
-    DATABASE_URL,
-    pool_size=20,
-    max_overflow=0
-)
+engine = create_engine(DATABASE_URL)
 
 DbEngine = scoped_session(sessionmaker(bind=engine))
 

@@ -30,7 +30,7 @@ def home():
             book_fields['year_published'] = book[4]
             search_data.append(book_fields)
         return redirect(url_for('search_results'))
-    return render_template('index.html', form=form, dashboard=True)
+    return render_template('index.html', form=form,)
 
 @app.route('/searchresults')
 def search_results():
@@ -41,18 +41,29 @@ def search_results():
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     form = LoginForm()
+    if request.method == 'POST':
+        user = db.execute(
+            "SELECT * FROM user WHERE email = :email",
+            { "email": form.email.data }
+        ).fetchone()
+        
+        if form.validate_on_submit():
+            session.clear()
+            session['user_id'] = user['id'] #add user id on session
+            return redirect(url_for('home'))
     return render_template('login.html', form=form)
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
     form = RegistrationForm()
     if form.validate_on_submit():
-        hashed_password = generate_password_hash(form.password.data, method='sha256')
-        new_user = User(username=form.username.data, email=form.email.data, password=hashed_password)
-        db2.session.add(new_user)
-        db2.session.commit()
-        message = 'Account created successfully, please login!'
-        return render_template('signup.html', form=form, message=message)
+            hashed_password = generate_password_hash(form.password.data).decode('utf-8')
+            db.execute(
+                "INSERT INTO user (username, email, password) VALUES (:username, :email, :password)",
+                { "username": form.username.data, "email":  form.email.data, "password": hashed_password }
+            )
+            db.commit()
+            return jsonify({ 'success': 'Registration Successful' })
     return render_template('signup.html', form=form)
 
 @app.route('/logout')
