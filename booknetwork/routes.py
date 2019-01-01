@@ -20,6 +20,7 @@ def home():
             "SELECT * FROM book WHERE (LOWER(isbn) LIKE LOWER(:text)) OR (LOWER(title) LIKE LOWER(:text)) OR (author LIKE LOWER(:text)) LIMIT 10",
             { "text": '%' + text + '%'} 
         ).fetchall()
+        del search_data[:]
         for book in result:
             book_fields = {}
             book_fields['isbn'] = book[1]
