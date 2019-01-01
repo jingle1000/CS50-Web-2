@@ -1,6 +1,5 @@
 from flask import Flask, render_template, url_for, flash, jsonify, request, g, session, redirect, abort
 from flask_paginate import Pagination, get_page_args
-from werkzeug.security import generate_password_hash, check_password_hash
 from booknetwork import app, Base, engine, db
 from booknetwork.forms import RegistrationForm, LoginForm, SearchForm
 from booknetwork.models import User, Review, Book
@@ -37,26 +36,6 @@ def search_results():
     print('running search')
     print(search_data)
     return render_template('searchresults.html', results=search_data)
-
-@app.route('/login', methods=['GET', 'POST'])
-def login():
-    form = LoginForm()
-    return render_template('login.html', form=form)
-
-@app.route('/signup', methods=['GET', 'POST'])
-def signup():
-    form = RegistrationForm()
-    if form.validate_on_submit():
-        hashed_password = generate_password_hash(form.password.data, method='sha256')
-        print(hashed_password) ###remove for debugging
-        db.execute(
-                "INSERT INTO user (username, email, password) VALUES (:username, :email, :password)",
-                { "username": form.username.data, "email":  form.email.data, "password": hashed_password }
-            )
-        db.commit()
-        message = 'Account created successfully, please login!'
-        return render_template('signup.html', form=form, message=message)
-    return render_template('signup.html', form=form)
 
 @app.route('/logout')
 def logout():
