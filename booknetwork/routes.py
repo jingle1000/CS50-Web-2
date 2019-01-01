@@ -11,7 +11,6 @@ Base.metadata.create_all(engine)
 
 @app.route('/')
 def home():
-    reg_form = RegistrationForm()
-    log_form = LoginForm()
-    return render_template('index.html', reg_form=reg_form, login_form=log_form)
+    form = SearchForm()
+    return render_template('index.html', form=form)
 

@@ -18,7 +18,7 @@
 
 .jumbotron-heading {
   font-weight: 300;
-  margin-top: 4%;
+  margin-top: 8%;
 }
 
 .jumbotron .container {
@@ -32,4 +32,8 @@ footer {
 
 footer p {
   margin-bottom: .25rem;
+}
+
+#searchText, .form-group {
+  width: 100% !important;
 }

@@ -51,5 +51,5 @@ class LoginForm(FlaskForm):
         return True
 
 class SearchForm(FlaskForm):
-    searchText = StringField('Search Books', validators=[DataRequired()])
+    searchText = StringField('', validators=[DataRequired()])
         

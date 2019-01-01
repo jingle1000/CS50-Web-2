@@ -35,6 +35,7 @@ class Review(Base):
         self.book_id = book_id
 
 class Book(Base):
+    __tablename__ = 'book'
     id = Column(Integer, primary_key=True)
     isbn = Column(String)
     title = Column(String)
