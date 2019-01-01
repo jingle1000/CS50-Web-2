@@ -6,32 +6,24 @@
 {% endblock %}
 
 {% block content %}
-<main role="main">
-  <section class="jumbotron text-center">
-    <div class="container">
-      <h1 class="jumbotron-heading mt-5">Welcome {{ name }}</h1>
-      <p class="lead text-muted">Search for information on all your favorite titles!</p>
-    </div>
-  </section>
-</main>
-<form method="POST">
-  <div class="col-md-12 text-center" style='padding-left:25%; padding-right:25%;'>
-    <h3 class="mb-5">Search for a book</h3>
-    <div class="row mt-5">
-      <div class="col-md-9 form-inline">
-        {{ wtf.form_field(form.searchText) }}
-      </div>
-      <div class="col-md-3 form-inline">
-        <button class="btn btn-primary btn-block" type="submit">Search</button>
-      </div>
-    </div>
-    {% if search %}
-    <div class="row">
-      <div class="result card-style">
-        <p>{{ search }}</p>
+<header class="hero hero-home text-light">
+    <div class="container text-center">
+      <div class="row">
+        <div class="col-xl-9 mx-auto">
+          <h1 class="hero-heading mb-3">All Your Favorite Titles</h1>
+          <h3 class="mb-3">Search by ISBN, Title, Author, or Year Published</h3>
+          <div class="col-12">
+            <form class="hero-form d-flex flex-column flex-md-row" method="post">
+              <div class="col-12 col-md-9 mb-2 mb-md-0 form-inline">
+                 {{ wtf.form_field(form.searchText) }}
+              </div>
+              <div class="col-12 col-md-3 form-inline">
+               <button class="btn btn-primary btn-block" type="submit">Search</button>
+              </div>
+            </form>
+          </div>
+        </div>
       </div>
     </div>
-    {% endif %}
-  </div>
-</form>
+  </header>
 {% endblock %}
