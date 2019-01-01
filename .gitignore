@@ -8,3 +8,5 @@ flask_session/
 *.ipynb
 
 \.vscode/
+
+HARD BACKUP/
