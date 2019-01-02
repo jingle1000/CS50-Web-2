@@ -8,7 +8,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_bootstrap import Bootstrap
 
 app = Flask(__name__)
-DATABASE_URL= 'postgres://cezykxbcbwguds:ce990760be16388bf589436f85c415dae80eb7680b97ce724c2efd3e363fe04e@ec2-54-235-247-209.compute-1.amazonaws.com:5432/d6pq4pd96n8bci'
+DATABASE_URL = os.getenv("DATABASE_URL")
 #secure forms
 app.config['SECRET_KEY'] = 'gs3D#00kR3@*^'
 # Configure session to use filesystem
